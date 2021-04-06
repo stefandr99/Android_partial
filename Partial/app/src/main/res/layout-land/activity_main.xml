@@ -23,6 +23,12 @@
             android:layout_width="311dp"
             android:layout_height="wrap_content" />
 
+        <Button
+            android:id="@+id/calculeazaButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calculeaza"
+            android:onClick="showResult"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
@@ -57,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
+
     </LinearLayout>
 
     <LinearLayout
@@ -65,12 +72,7 @@
         android:layout_gravity="center"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/calculeazaButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Calculeaza"
-            android:onClick="showResult"/>
+
 
 
     </LinearLayout>

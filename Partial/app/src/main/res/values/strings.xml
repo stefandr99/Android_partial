@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Partial</string>
+    
+    <string-array name="operatii">
+        <item>Plus</item>
+        <item>Minus</item>
+        <item>Ori</item>
+        <item>Imparte</item>
+    </string-array>
 </resources>
