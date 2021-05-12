@@ -24,19 +24,11 @@ public class MainActivity extends AppCompatActivity {
         infoMorse = (Button) findViewById(R.id.infoMorseButton);
         exitButton = (Button) findViewById(R.id.exitButton);
 
-        startMorse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMainMorseActivity();
-            }
-        });
+        startMorse.setOnClickListener(v -> openMainMorseActivity());
 
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                exitApplication();
-            }
-        });
+        infoMorse.setOnClickListener(v -> openInfoMorseActivity());
+
+        exitButton.setOnClickListener(v -> exitApplication());
     }
 
     public void openMainMorseActivity() {
@@ -54,5 +46,10 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    public void openInfoMorseActivity() {
+        Intent intent = new Intent(this, InfoMorseActivity.class);
+        startActivity(intent);
     }
 }

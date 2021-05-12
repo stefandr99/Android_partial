@@ -5,17 +5,17 @@
     android:layout_height="match_parent"
     android:background="@drawable/morse_background"
     android:orientation="vertical"
+    android:layout_gravity="center_vertical"
     tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:contentDescription="TODO"
         android:src="@drawable/morse_title"
-        tools:ignore="MissingConstraints"
-        android:contentDescription="TODO" />
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/startMorseButton"
@@ -25,9 +25,7 @@
         android:background="@drawable/menu_button"
         android:textColor="#FFFFFF"
         android:text="Începe"
-        android:layout_marginStart="91dp"
-        android:layout_marginLeft="91dp"
-        android:layout_marginTop="380dp" />
+        android:layout_marginTop="200dp" />
 
     <Button
         android:id="@+id/infoMorseButton"
@@ -37,7 +35,7 @@
         android:background="@drawable/menu_button"
         android:textColor="#FFFFFF"
         android:text="Ce este codul morse?"
-        android:layout_marginTop="482dp" />
+        android:layout_marginTop="270dp" />
 
     <Button
         android:id="@+id/exitButton"
@@ -47,6 +45,6 @@
         android:background="@drawable/menu_button"
         android:text="Închide"
         android:textColor="#FFFFFF"
-        android:layout_marginTop="584dp" />
+        android:layout_marginTop="340dp" />
 
 </RelativeLayout>

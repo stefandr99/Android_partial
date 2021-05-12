@@ -1,23 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/morse_background"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
     tools:context=".MainMorseActivity">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
+    <TextView
+        android:id="@+id/your_morse_code"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="82dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.496" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/chango"
+        android:text="Your Text to Encode"
+        android:textSize="36sp" />
+
+    <EditText
+        android:id="@+id/edit_plain_text"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/text_input_to_encode"
+        android:drawableStart="@drawable/ic_text_morse"
+        android:drawableLeft="@drawable/ic_text_morse"
+        android:drawablePadding="12dp"
+        android:gravity="top"
+        android:paddingLeft="10dp"
+        android:hint="Your text"
+        android:inputType="text|textMultiLine" />
+
+    <TextView
+        android:id="@+id/resulted_code_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/chango"
+        android:text="Your Morse Code"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/morse_code_resulted"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="10dp"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:background="@drawable/morse_code_view"
+        android:drawableStart="@drawable/ic_morse_code"
+        android:drawableLeft="@drawable/ic_morse_code"
+        android:drawablePadding="12dp"
+        android:gravity="top"
+        android:hint="Morse Code"
+        android:inputType="text|textMultiLine" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="70dp" >
+        <Button
+            android:id="@+id/flash_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:text="Flash the code" />
+
+        <Button
+            android:id="@+id/send_sms_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Sms the code" />
+    </LinearLayout>
+</LinearLayout>
