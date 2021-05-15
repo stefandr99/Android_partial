@@ -10,9 +10,14 @@ import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Telephony;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,7 +36,7 @@ public class MainMorseActivity extends AppCompatActivity {
     CameraManager cameraManager;
     private final static int unit = 100;
     private final static int SEND_SMS_PERMISSION_REQUEST_CODE = 111;
-
+    private Handler mainHandler = new Handler();
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -75,7 +80,6 @@ public class MainMorseActivity extends AppCompatActivity {
 
     }
 
-    //o unitate are 200 milisecunde
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void flashTheCode() {
         if(!getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
@@ -83,40 +87,59 @@ public class MainMorseActivity extends AppCompatActivity {
         }
         else {
             String myCode = morseCode.getText().toString();
-            try {
-                for(int i = 0; i < myCode.length(); i++) {
-                    char next = '*', current = myCode.charAt(i);
-                    if(i + 1 < myCode.length())
-                        next = myCode.charAt(i + 1);
+            //try {
+                String[] words = myCode.split(" ");
 
-                    if(current == '.') {
-                        cameraManager.setTorchMode("0", true);
-                        TimeUnit.MILLISECONDS.sleep(unit);
-                        cameraManager.setTorchMode("0", false);
-                        if(next != ' ')
+                for(int i = 0; i < words.length; i++) {
+                    String word = words[i];
+
+                    //CharacterCodeThread runnable = new CharacterCodeThread(word);
+                    TorchThread runnable = new TorchThread(word);
+                    new Thread(runnable).start();showCharacterCode(word);
+
+                    /*if(words[i].compareTo("|") == 0) {
+                        TimeUnit.MILLISECONDS.sleep(7 * unit);
+                    }
+
+                    for(int j = 0; j < word.length(); j++) {
+                        if(word.charAt(j) == '.') {
+                            cameraManager.setTorchMode("0", true);
                             TimeUnit.MILLISECONDS.sleep(unit);
-                    }
-                    else if(current == '-') {
-                        cameraManager.setTorchMode("0", true);
-                        TimeUnit.MILLISECONDS.sleep(unit * 3);
-                        cameraManager.setTorchMode("0", false);
-                        if(next != ' ')
-                            TimeUnit.MILLISECONDS.sleep(unit);
-                    }
-                    else if(current == ' ' || next != '|') {
+                            cameraManager.setTorchMode("0", false);
+                        }
+                        else if(word.charAt(j) == '-') {
+                            cameraManager.setTorchMode("0", true);
+                            TimeUnit.MILLISECONDS.sleep(unit * 3);
+                            cameraManager.setTorchMode("0", false);
+                        }
                         TimeUnit.MILLISECONDS.sleep(unit);
                     }
-                    else if(current == '|') {
-                        TimeUnit.MILLISECONDS.sleep(unit * 7);
-                        i++;
-                    }
 
+                    if(i + 1 < words.length && words[i + 1].compareTo("|") != 0)
+                        TimeUnit.MILLISECONDS.sleep(unit);
 
+                     */
                 }
-            } catch (CameraAccessException | InterruptedException e) {
+
+            /*} catch (CameraAccessException | InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
+    }
+
+    public void showCharacterCode(String code) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.character_code_toast, (ViewGroup) findViewById(R.id.toast_code_root));
+
+        TextView codeTextView = layout.findViewById(R.id.toast_code_text);
+        codeTextView.setText(code);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+
+        toast.show();
     }
 
     public void sendMorseSms() {
@@ -127,5 +150,103 @@ public class MainMorseActivity extends AppCompatActivity {
 
         smsDialog.setArguments(args);
         smsDialog.show(getSupportFragmentManager(), "Send sms");
+    }
+
+    class TorchThread implements Runnable {
+        String letter;
+
+        TorchThread(String letter) {
+            this.letter = letter;
+        }
+
+        @Override
+        public void run() {
+            mainHandler.post(new Runnable() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
+                @Override
+                public void run() {
+                    if(letter.compareTo("|") == 0) {
+                        try {
+                            TimeUnit.MILLISECONDS.sleep(7 * unit);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    for(int j = 0; j < letter.length(); j++) {
+                        if(letter.charAt(j) == '.') {
+                            try {
+                                cameraManager.setTorchMode("0", true);
+                            } catch (CameraAccessException e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                TimeUnit.MILLISECONDS.sleep(unit);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                cameraManager.setTorchMode("0", false);
+                            } catch (CameraAccessException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        else if(letter.charAt(j) == '-') {
+                            try {
+                                cameraManager.setTorchMode("0", true);
+                            } catch (CameraAccessException e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                TimeUnit.MILLISECONDS.sleep(unit * 3);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                cameraManager.setTorchMode("0", false);
+                            } catch (CameraAccessException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        try {
+                            TimeUnit.MILLISECONDS.sleep(unit);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+
+        }
+    }
+
+    class CharacterCodeThread implements Runnable {
+        String code;
+
+        CharacterCodeThread(String code) {
+            this.code = code;
+        }
+
+        @Override
+        public void run() {
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    LayoutInflater inflater = getLayoutInflater();
+                    View layout = inflater.inflate(R.layout.character_code_toast, (ViewGroup) findViewById(R.id.toast_code_root));
+
+                    TextView codeTextView = layout.findViewById(R.id.toast_code_text);
+                    codeTextView.setText(code);
+
+                    Toast toast = new Toast(getApplicationContext());
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.setDuration(Toast.LENGTH_LONG);
+                    toast.setView(layout);
+
+                    toast.show();
+                }
+            });
+
+        }
     }
 }
