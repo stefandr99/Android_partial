@@ -24,7 +24,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/menu_button"
         android:textColor="#FFFFFF"
-        android:text="Începe"
+        android:text="Start"
         android:layout_marginTop="200dp" />
 
     <Button
@@ -34,7 +34,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/menu_button"
         android:textColor="#FFFFFF"
-        android:text="Ce este codul morse?"
+        android:text="What is Morse Code?"
         android:layout_marginTop="270dp" />
 
     <Button
@@ -43,7 +43,7 @@
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/menu_button"
-        android:text="Închide"
+        android:text="Exit"
         android:textColor="#FFFFFF"
         android:layout_marginTop="340dp" />
 

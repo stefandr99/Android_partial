@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openInfoMorseActivity() {
-        Intent intent = new Intent(this, InfoMorseActivity.class);
+        Intent intent = new Intent(this, test_main.class);
         startActivity(intent);
     }
 }

@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/chango"
         android:text="Your Text to Encode"
         android:textSize="36sp" />
@@ -23,8 +23,8 @@
     <EditText
         android:id="@+id/edit_plain_text"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/text_input_to_encode"
         android:drawableStart="@drawable/ic_text_morse"
         android:drawableLeft="@drawable/ic_text_morse"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/chango"
         android:text="Your Morse Code"
         android:textSize="36sp" />
@@ -48,8 +48,8 @@
     <TextView
         android:id="@+id/morse_code_resulted"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
         android:paddingLeft="10dp"
         android:textSize="25sp"
         android:textColor="@color/white"
@@ -66,18 +66,18 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_horizontal"
-        android:layout_marginTop="70dp" >
+        android:layout_marginTop="20dp" >
         <Button
             android:id="@+id/flash_code"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginRight="15dp"
             android:text="Flash the code" />
 
         <Button
             android:id="@+id/send_sms_code"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginLeft="15dp"
             android:text="Sms the code" />
     </LinearLayout>
