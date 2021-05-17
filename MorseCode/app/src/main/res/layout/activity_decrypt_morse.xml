@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/morse_background"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    tools:context=".DecryptMorseActivity">
+
+    <TextView
+        android:id="@+id/your_morse_code_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/chango"
+        android:text="Your Morse Code"
+        android:textSize="36sp" />
+
+    <EditText
+        android:id="@+id/edit_morse_code_text"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:background="@drawable/morse_code_view"
+        android:drawableStart="@drawable/ic_morse_code"
+        android:drawableLeft="@drawable/ic_morse_code"
+        android:drawablePadding="12dp"
+        android:textSize="25sp"
+        android:gravity="top"
+        android:paddingLeft="10dp"
+        android:textColorHint="@color/white"
+        android:inputType="text|textMultiLine" />
+
+    <TextView
+        android:id="@+id/resulted_plain_text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/chango"
+        android:text="Your Text Decoded"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/plain_text_resulted"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:background="@drawable/text_input_to_encode"
+        android:drawableStart="@drawable/ic_text_morse"
+        android:drawableLeft="@drawable/ic_text_morse"
+        android:drawablePadding="12dp"
+        android:gravity="top"
+        android:textSize="20dp"
+        android:hint="Plain text"
+        android:inputType="text|textMultiLine" />
+
+</LinearLayout>

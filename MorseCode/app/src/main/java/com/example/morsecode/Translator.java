@@ -138,6 +138,6 @@ public class Translator {
         decoder.put(".----.", '\'');
         decoder.put("-...-", '=');
 
-        decoder.put("| ", ' ');
+        decoder.put("|", ' ');
     }
 }

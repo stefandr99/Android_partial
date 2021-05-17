@@ -6,15 +6,14 @@
     android:layout_height="match_parent"
     android:background="@drawable/morse_background"
     android:orientation="vertical"
-    android:paddingHorizontal="2dp"
-    tools:context=".test_main">
+    tools:context=".DecryptMorseActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight=".50"
             android:orientation="vertical"
             android:paddingHorizontal="10dp">
@@ -27,17 +26,19 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/chango"
                 android:gravity="center"
-                android:text="Your Text to Encode"
+                android:text="Your Morse Code"
                 android:textSize="36sp" />
 
             <EditText
                 android:id="@+id/edit_plain_text"
                 android:layout_width="match_parent"
-                android:layout_height="430dp"
+                android:layout_height="250dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/text_input_to_encode"
-                android:drawableStart="@drawable/ic_text_morse"
-                android:drawableLeft="@drawable/ic_text_morse"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:background="@drawable/morse_code_view"
+                android:drawableStart="@drawable/ic_morse_code"
+                android:drawableLeft="@drawable/ic_morse_code"
                 android:drawablePadding="12dp"
                 android:gravity="top"
                 android:hint="Your text"
@@ -59,46 +60,24 @@
                 android:gravity="center"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/chango"
-                android:text="Your Morse Code"
+                android:text="Your Text Decoded"
                 android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/morse_code_resulted"
                 android:layout_width="match_parent"
-                android:layout_height="430dp"
+                android:layout_height="250dp"
                 android:layout_marginTop="10dp"
                 android:paddingLeft="10dp"
-                android:textSize="25sp"
-                android:textColor="@color/white"
-                android:background="@drawable/morse_code_view"
-                android:drawableStart="@drawable/ic_morse_code"
-                android:drawableLeft="@drawable/ic_morse_code"
+                android:textSize="20sp"
+                android:background="@drawable/text_input_to_encode"
+                android:drawableStart="@drawable/ic_text_morse"
+                android:drawableLeft="@drawable/ic_text_morse"
                 android:drawablePadding="12dp"
                 android:gravity="top"
-                android:hint="Morse Code"
+                android:hint="Plain Text"
                 android:inputType="text|textMultiLine" />
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="30dp" >
-        <Button
-            android:id="@+id/flash_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
-            android:background="@color/purple_200"
-            android:text="Flash the code" />
-
-        <Button
-            android:id="@+id/send_sms_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sms the code" />
     </LinearLayout>
 
 </LinearLayout>

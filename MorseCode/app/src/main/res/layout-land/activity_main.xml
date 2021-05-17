@@ -13,28 +13,27 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:contentDescription="TODO"
         android:src="@drawable/morse_title"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/startMorseButton"
+        android:id="@+id/encryptMorseButton"
         android:layout_width="228dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/menu_button"
         android:textColor="#FFFFFF"
-        android:text="Start"
+        android:text="Encrypt"
         android:layout_marginTop="200dp" />
 
     <Button
-        android:id="@+id/infoMorseButton"
+        android:id="@+id/decryptMorseButton"
         android:layout_width="228dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/menu_button"
         android:textColor="#FFFFFF"
-        android:text="What is Morse Code?"
+        android:text="Decrypt"
         android:layout_marginTop="270dp" />
 
     <Button

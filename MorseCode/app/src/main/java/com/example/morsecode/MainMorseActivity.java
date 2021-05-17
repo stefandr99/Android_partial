@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.provider.Telephony;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,17 +88,13 @@ public class MainMorseActivity extends AppCompatActivity {
         }
         else {
             String myCode = morseCode.getText().toString();
-            //try {
+            try {
                 String[] words = myCode.split(" ");
 
                 for(int i = 0; i < words.length; i++) {
                     String word = words[i];
 
-                    //CharacterCodeThread runnable = new CharacterCodeThread(word);
-                    TorchThread runnable = new TorchThread(word);
-                    new Thread(runnable).start();showCharacterCode(word);
-
-                    /*if(words[i].compareTo("|") == 0) {
+                    if(words[i].compareTo("|") == 0) {
                         TimeUnit.MILLISECONDS.sleep(7 * unit);
                     }
 
@@ -117,13 +114,11 @@ public class MainMorseActivity extends AppCompatActivity {
 
                     if(i + 1 < words.length && words[i + 1].compareTo("|") != 0)
                         TimeUnit.MILLISECONDS.sleep(unit);
-
-                     */
                 }
 
-            /*} catch (CameraAccessException | InterruptedException e) {
+            } catch (CameraAccessException | InterruptedException e) {
                 e.printStackTrace();
-            }*/
+            }
         }
     }
 
@@ -159,64 +154,65 @@ public class MainMorseActivity extends AppCompatActivity {
             this.letter = letter;
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         public void run() {
-            mainHandler.post(new Runnable() {
-                @RequiresApi(api = Build.VERSION_CODES.M)
-                @Override
-                public void run() {
-                    if(letter.compareTo("|") == 0) {
-                        try {
-                            TimeUnit.MILLISECONDS.sleep(7 * unit);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
+            if(letter.compareTo("|") == 0) {
+                try {
+                    TimeUnit.MILLISECONDS.sleep(7 * unit);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
 
-                    for(int j = 0; j < letter.length(); j++) {
-                        if(letter.charAt(j) == '.') {
-                            try {
-                                cameraManager.setTorchMode("0", true);
-                            } catch (CameraAccessException e) {
-                                e.printStackTrace();
-                            }
-                            try {
-                                TimeUnit.MILLISECONDS.sleep(unit);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            try {
-                                cameraManager.setTorchMode("0", false);
-                            } catch (CameraAccessException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        else if(letter.charAt(j) == '-') {
-                            try {
-                                cameraManager.setTorchMode("0", true);
-                            } catch (CameraAccessException e) {
-                                e.printStackTrace();
-                            }
-                            try {
-                                TimeUnit.MILLISECONDS.sleep(unit * 3);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            try {
-                                cameraManager.setTorchMode("0", false);
-                            } catch (CameraAccessException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        try {
-                            TimeUnit.MILLISECONDS.sleep(unit);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+            for(int j = 0; j < letter.length(); j++) {
+                if(letter.charAt(j) == '.') {
+                    try {
+                        cameraManager.setTorchMode("0", true);
+                    } catch (CameraAccessException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(unit);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        cameraManager.setTorchMode("0", false);
+                    } catch (CameraAccessException e) {
+                        e.printStackTrace();
                     }
                 }
-            });
-
+                else if(letter.charAt(j) == '-') {
+                    try {
+                        cameraManager.setTorchMode("0", true);
+                    } catch (CameraAccessException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(unit * 3);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        cameraManager.setTorchMode("0", false);
+                    } catch (CameraAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+                try {
+                    TimeUnit.MILLISECONDS.sleep(unit);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            /*Log.d("Thread: ", "1");
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Log.d("Thread: ", "2");*/
         }
     }
 

@@ -3,16 +3,13 @@ package com.example.morsecode;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    Button startMorse;
-    Button infoMorse;
+    Button encryptMorse;
+    Button decryptMorse;
     Button exitButton;
 
     @Override
@@ -20,13 +17,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startMorse = (Button) findViewById(R.id.startMorseButton);
-        infoMorse = (Button) findViewById(R.id.infoMorseButton);
+        encryptMorse = (Button) findViewById(R.id.encryptMorseButton);
+        decryptMorse = (Button) findViewById(R.id.decryptMorseButton);
         exitButton = (Button) findViewById(R.id.exitButton);
 
-        startMorse.setOnClickListener(v -> openMainMorseActivity());
+        encryptMorse.setOnClickListener(v -> openMainMorseActivity());
 
-        infoMorse.setOnClickListener(v -> openInfoMorseActivity());
+        decryptMorse.setOnClickListener(v -> openDecryptMorseActivity());
 
         exitButton.setOnClickListener(v -> exitApplication());
     }
@@ -48,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    public void openInfoMorseActivity() {
-        Intent intent = new Intent(this, test_main.class);
+    public void openDecryptMorseActivity() {
+        Intent intent = new Intent(this, DecryptMorseActivity.class);
         startActivity(intent);
     }
 }
